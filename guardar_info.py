@@ -2,27 +2,37 @@
     Agregar información en una colección de MongoDB
     desde Python
 """
-from enlace_base import client
+from base_datos import client
 
-# se obtiene la colección general (base de datos)
+# Se obtiene la colección general
+db = client.tarea04
 
-db = client.ejemploMongo001
-coleccion = db.autores
+# Se crea la colección "MatriculaEstudiante"
+coleccion_matricula_estudiante = db.matriculas_estudiantes
 
-# conjunto de datos a guardar en la colección
-# importante, aquí se usa la estructura de Python denominada diccionario
-# proceso que agrega un solo documento
-data_01 = {"nombre": "Luis", "apellido": "Valencia",
-"nacionalidad":"ecuatoriana", "numero_publicaciones": 100}
+# Se crea la colección "MatriculaVehiculo"
+coleccion_matricula_vehiculo = db.matriculas_vehiculos
 
-# coleccion.insert_one(data_01)
+# Se agregan datos a la colección "MatriculaEstudiante"
+data_matricula_estudiante_01 = {
+  "nombre": "Melissa",
+  "apellidos": "Cortez",
+  "cedula": "0987654321",
+  "fecha_nacimiento": "1982-10-09",
+  "carrera": "Comunicadora",
+  "año_ingreso": 2000
+}
 
-# proceso que agrega una lista de documentos
-lista = [
-{"nombre": "José", "apellido": "Medina", "nacionalidad":"ecuatoriana",
-"numero_publicaciones": 90},
-{"nombre": "María", "apellido": "Velez", "nacionalidad":"peruana",
-"numero_publicaciones": 80}
-]
+coleccion_matricula_estudiante.insert_one(data_matricula_estudiante_01)
 
-coleccion.insert_many(lista)
+# Se agregan datos a la colección "MatriculaVehiculo"
+data_matricula_vehiculo_01 = {
+  "placa": "GFD0987",
+  "marca": "Volswagen",
+  "modelo": "gol",
+  "año_fabricacion": 2011,
+  "propietario": "Melissa Cortez",
+  "cedula": "0987654321"
+}
+
+coleccion_matricula_vehiculo.insert_one(data_matricula_vehiculo_01)
