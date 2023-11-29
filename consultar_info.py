@@ -2,21 +2,21 @@
     Consultar información en una colección de MongoDB
     desde Python
 """
-from enlace_base import client
+from base_datos import client
 
-# se obtiene la colección general (base de datos)
+#Colección general
+db = client.tarea04
 
-db = client.ejemploMongo001
-coleccion = db.autores
+#Colecciones necesarias
+coleccion_matricula_estudiante = db.matriculas_estudiantes
+coleccion_matricula_vehiculo = db.matriculas_vehiculos
 
-# se usa método find_one con parámetros, a partir de la colección
-print("Muestra un solo documento de la base de datos")
-data_01 = coleccion.find_one({'nombre':'Luis'})
-print(data_01)
+#Consultas
+#Colección "MatriculaEstudiante"
+data_matricula_estudiante_01 = coleccion_matricula_estudiante.find_one({'nombre':'Juan'})
 
-# se usa método find con parámetros, a partir de la colección
-print("Muestra todos los documentos de la base de datos que cumplan con la \
-condición")
-data_02 = coleccion.find({'numero_publicaciones':{"$lt":100}})
-for registro in data_02:
-    print(registro)
+#Colección "MatriculaVehiculo"
+data_matricula_vehiculo_01 = coleccion_matricula_vehiculo.find_one({'propietario':'Melissa Cortez'})
+
+print(data_matricula_estudiante_01)
+print(data_matricula_vehiculo_01)
